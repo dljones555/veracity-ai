@@ -1,9 +1,9 @@
 # Veracity AI
 
-[![Tests](https://github.com/dljon/veracity-ai/actions/workflows/tests.yml/badge.svg)](https://github.com/dljon/veracity-ai/actions/workflows/tests.yml)
+[![Tests](https://github.com/dljones555/veracity-ai/actions/workflows/tests.yml/badge.svg)](https://github.com/dljones555/veracity-ai/actions/workflows/tests.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/downloads/)
 
-**Veracity Bill of Materials (VBOM)** — A universal verification standard for AI outputs. Automatically generates transparency reports showing which verification methods were used, confidence levels, and evidence sources for any AI response.
+**Veracity Bill of Materials (VBOM)** — A universal verification standard for AI outputs. Automatically generates transparent reports showing which verification methods were used, confidence levels, and evidence sources for any AI response.
 
 ## Quick Start
 
@@ -64,6 +64,38 @@ This enables users to understand *why* they should trust an AI response.
 - **Reasoning**: Chain-of-thought analysis and self-critique
 - **HITL**: Human-in-the-loop review for sensitive claims
 
+## Example
+
+A `VeracityReport` captures a verification graph for a response, including method results, sources, and a final certainty score.
+
+Example verification flow for a recipe claim:
+
+- User asks: "Is bacon avocado toast healthy for breakfast?"
+- System verifies:
+  - `compute_verification` checks calories and saturated fat
+  - `search_cross_reference` cites USDA and WHO sources
+  - `cot_reasoning` flags the processed meat claim
+  - `human_in_the_loop` may recommend review if confidence is low
+
+Minimal example output:
+
+```json
+{
+  "claim_type": "recipe",
+  "methods_graph": [
+    {"method": "compute_verification", "status": "pass", "sources": ["USDA"]},
+    {"method": "search_cross_reference", "status": "warn", "sources": ["WHO", "Mayo Clinic"]},
+    {"method": "cot_reasoning", "status": "warn"}
+  ],
+  "summary": {"overall_certainty": 68, "risk_level": "high"}
+}
+```
+
+Another example is fact verification:
+
+- User asks: "What is the 2025 inflation rate?"
+- System verifies with source-backed web retrieval and returns a confidence score plus citations.
+
 ## Architecture
 
 ```
@@ -78,22 +110,42 @@ src/veracity/
 
 ## Features
 
-- 🔗 **GitHub Models API** integration (`openai/gpt-4o` by default)
+- 🔗 **LLM-agnostic verification** with OpenAI-compatible endpoints
+- 📦 **External system prompt support** via `system_prompt.md`
 - 📊 **Structured Verification** with Pydantic v2
 - 🔍 **Multi-method Verification** (search, compute, reason, HITL)
-- 🎨 **Rich CLI Output** with formatted reports
-- 🧪 **100% Test Coverage** target
+- 🧾 **JSON export** for shareable `VeracityReport` artifacts
+- 🧪 **GitHub Actions CI** with `uv` support
 
 ## Configuration
 
 Set environment variables:
 
 ```bash
-export GITHUB_TOKEN=your_token_here
-export VERACITY_MODEL=openai/gpt-4o  # Optional, defaults to gpt-4o
+export VERACITY_MODEL=openai/gpt-4o
+export VERACITY_BASE_URL=https://models.github.ai/inference
+export OPENAI_API_KEY=your_key_here
 ```
 
-The CLI will prompt for missing credentials.
+`OPENAI_API_KEY` and `VERACITY_API_KEY` are supported, and `GITHUB_TOKEN` will still work for GitHub Models API.
+
+### Run the CLI
+
+```bash
+python -m veracity.cli
+```
+
+### Export JSON report
+
+```bash
+python -m veracity.cli --export-json report.json
+```
+
+### Use an external system prompt
+
+```bash
+python -m veracity.cli --system-prompt system_prompt.md
+```
 
 ## Contributing
 
