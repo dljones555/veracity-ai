@@ -3,7 +3,7 @@
 [![Tests](https://github.com/dljones555/veracity-ai/actions/workflows/tests.yml/badge.svg)](https://github.com/dljones555/veracity-ai/actions/workflows/tests.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/downloads/)
 
-**Veracity Bill of Materials (VBOM)** — A universal verification standard for AI outputs. Automatically generates transparent reports showing which verification methods were used, confidence levels, and evidence sources for any AI response.
+Veracity AI uses a verification graph to produce structured evidence reports for AI outputs. Automatically generates transparent reports showing which verification methods were used, confidence levels, and evidence sources for any AI response.
 
 ## Quick Start
 
@@ -16,7 +16,7 @@
 ```bash
 # Create and activate virtual environment
 uv venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+.venv\Scripts\activate  # On Windows
 
 # Sync dependencies
 uv sync
@@ -28,26 +28,9 @@ uv run python -m veracity.cli
 uv run pytest
 ```
 
-### Installation with pip (legacy)
+## What is a verification graph?
 
-```bash
-# Create virtual environment
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-
-# Install in development mode
-pip install -e ".[dev]"
-
-# Run the chat interface
-python -m veracity.cli
-
-# Run tests
-pytest
-```
-
-## What is VBOM?
-
-Veracity AI produces a structured Veracity Bill of Materials for AI outputs, similar to nutritional labels for food. Each response includes:
+Veracity AI produces a structured verification graph for AI outputs, similar to a provenance and evidence trail. Each response includes:
 
 - **Verification Methods**: Which techniques were applied (search, reasoning, computation, HITL, etc.)
 - **Confidence Score**: Evidence-based certainty (0-100%)
@@ -100,7 +83,7 @@ Another example is fact verification:
 
 ```
 src/veracity/
-├── schema.py      # VBOM Pydantic models (the standard)
+├── schema.py      # Verification graph Pydantic models (the standard)
 ├── verifiers/     # Verification implementations
 ├── pipeline.py    # Orchestrates verification workflow
 ├── llm.py         # GitHub Models API integration

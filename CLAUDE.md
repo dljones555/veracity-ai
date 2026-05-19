@@ -1,7 +1,7 @@
 # Veracity AI
 
 ## Project
-Universal verification standard for AI outputs. Produces a Veracity Bill of Materials (VBOM) for any AI response.
+Universal verification standard for AI outputs. Produces a verification graph for any AI response.
 
 ## Stack
 - Python 3.11+, Pydantic v2, openai SDK
@@ -9,12 +9,12 @@ Universal verification standard for AI outputs. Produces a Veracity Bill of Mate
 - Default model: `openai/gpt-4o` (override with `VERACITY_MODEL`)
 
 ## Commands
-- Install: `pip install -e ".[dev]"`
-- Test: `pytest`
-- Run: `python -m veracity.cli`
+- Install: `uv venv && uv sync`
+- Test: `uv run pytest`
+- Run: `uv run python -m veracity.cli`
 
 ## Structure
-- `src/veracity/schema.py` — VBOM Pydantic models (the standard)
+- `src/veracity/schema.py` — Verification graph Pydantic models (the standard)
 - `src/veracity/verifiers/` — verification method implementations
 - `src/veracity/pipeline.py` — orchestrator
 - `src/veracity/llm.py` — GitHub Models API wrapper

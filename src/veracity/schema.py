@@ -1,4 +1,4 @@
-"""VBOM (Veracity Bill of Materials) schema — the verification standard."""
+"""Verification graph schema — the verification standard."""
 
 from __future__ import annotations
 
@@ -70,7 +70,7 @@ class VerificationSummary(BaseModel):
 
 
 class VeracityReport(BaseModel):
-    """Top-level VBOM document — the Veracity Bill of Materials."""
+    """Top-level verification graph document."""
 
     schema_version: SchemaVersion = SchemaVersion.V0_1_0
     report_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
