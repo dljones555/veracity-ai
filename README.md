@@ -3,7 +3,7 @@
 [![Tests](https://github.com/dljones555/veracity-ai/actions/workflows/tests.yml/badge.svg)](https://github.com/dljones555/veracity-ai/actions/workflows/tests.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/downloads/)
 
-Veracity AI uses a verification graph to produce structured evidence reports for AI outputs. Automatically generates transparent reports showing which verification methods were used, confidence levels, and evidence sources for any AI response. For more details, read through the ideas in the informal [specification](spec.md) from LLM chat session.
+Veracity AI uses a verification graph to produce structured evidence reports for AI outputs. Automatically generates transparent reports showing which verification methods were used, confidence levels, and evidence sources for any AI response. For more details, read through the ideas in the informal [specification](spec.md) from LLM chat session. Here's a longer [exploration](https://gemini.google.com/app/419e55cb1b9597a2) of this idea and examples with Google Gemini. Note this made quickly after exploring idea with Grok and then coding agent assisted prototype for an idea I thought was worth sharing with others for consideration and collaboration. Open to comments, and any donation via sponsorship if you find this useful or intresting.
 
 ## Quick Start
 
