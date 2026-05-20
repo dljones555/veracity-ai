@@ -3,7 +3,7 @@
 [![Tests](https://github.com/dljones555/veracity-ai/actions/workflows/tests.yml/badge.svg)](https://github.com/dljones555/veracity-ai/actions/workflows/tests.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/downloads/)
 
-Veracity AI uses a verification graph to produce structured evidence reports for AI outputs. Automatically generates transparent reports showing which verification methods were used, confidence levels, and evidence sources for any AI response.
+Veracity AI uses a verification graph to produce structured evidence reports for AI outputs. Automatically generates transparent reports showing which verification methods were used, confidence levels, and evidence sources for any AI response. For more details, read through the ideas in the informal [specification](spec.md) from LLM chat session.
 
 ## Quick Start
 
